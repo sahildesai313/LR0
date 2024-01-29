@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://static.vecteezy.com/system/resources/previews/022/426/796/non_2x/pineapple-with-sunglasses-on-blue-background-summer-vacation-concept-generative-ai-free-photo.jpeg');
+            margin: 0;
+            background-repeat: no-repeat;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-position: center;
+            background-size: cover;
+        }
+        .form-container {
+            background-color: #ffffff18;
+            box-shadow: 0 0 10px rgb(9, 1, 1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-left: 500px;
+            width: 700px;
+        }
+        .form-container h2 {
+            font-size: 25px;
+            font-weight: 500;
+            position: relative;
+        }
+        .form-container h2::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 3px;
+            width: 30px;
+            border-radius: 5px;
+            background-color: black;
+        }
+        .user-details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 20px 0 12px 0;
+        }
+        .user-details .input-box {
+            margin-bottom: 15px;
+            width: calc(100% / 2 - 20px);
+        }
+        .user-details .input-box .details {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        .user-details .input-box input {
+            height: 45px;
+            width: 100%;
+            outline: none;
+            font-size: 16px;
+            border-radius: 5px;
+            padding-left: 15px;
+            border: 1px solid #ccc;
+            border-bottom-width: 2px;
+            transition: all 0.3s ease;
+        }
+        .user-details .input-box input:focus,
+        .user-details .input-box input:valid {
+            border-color: #9b59b6;
+        }
+        .button {
+            height: 45px;
+            margin: 35px 0;
+        }
+        .button input {
+            height: 100%;
+            width: 100%;
+            border-radius: 5px;
+            border: none;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: rgb(24, 22, 22);
+        }
+        .button input:hover {
+            background-color: #15363cb0;
+        }
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <h2>Registration</h2>
+    <!-- Messages section -->
+    {% if messages %}
+        <div class="messages">
+            <ul>
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+    <hr>
+    <!-- Registration form -->
+    <form method="post">
+        {% csrf_token %}
+        <div class="user-details">
+            <div class="input-box">
+                <span class="details">Username</span>
+                <input type="text" id="username" name="username" required placeholder="Enter your username">
+            </div>
+            <div class="input-box">
+                <span class="details">Full Name</span>
+                <input type="text" id="fullname" name="fullname" required placeholder="Enter your full name">
+            </div>
+            <div class="input-box">
+                <span class="details">Email ID</span>
+                <input type="email" id="email" name="email" required placeholder="Enter your email">
+            </div>
+            <div class="input-box">
+                <span class="details">Phone Number</span>
+                <input type="text" id="phone" name="phone" required minlength="10" placeholder="Enter your phone number">
+            </div>
+            <div class="input-box">
+                <span class="details">Password</span>
+                <input type="password" id="password" name="password" required placeholder="Enter your password">
+            </div>
+            <div class="input-box">
+                <span class="details">Confirm Password</span>
+                <input type="password" id="confirmpassword" name="confirmpassword" required placeholder="Confirm your password">
+            </div>
+        </div>
+        <div class="button">
+            <input type="submit" class="register-button" value="Register">
+        </div>
+    </form>
+    <hr>
+    <!-- Login link -->
+    <p>Already have an account? <a href="/">Login here</a></p>
+</div>
+</body>
+</html>
